@@ -51,8 +51,14 @@ export type ShaderSettings = {
   glow: number;
   voronoiSiteCount: number;
   voronoiEdgeWidth: number;
+  voronoiEdgeSoftness: number;
   voronoiGlowRadius: number;
   voronoiGlowIntensity: number;
+  voronoiWarpStrength: number;
+  voronoiWarpScale: number;
+  voronoiThicknessVariation: number;
+  voronoiJunctionBoost: number;
+  voronoiContrast: number;
 };
 
 export type TextSettings = {

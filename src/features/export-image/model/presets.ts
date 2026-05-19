@@ -99,8 +99,14 @@ function validatePreset(value: Record<string, unknown>): Partial<AppState> {
       glow: numberRange(value.shader.glow, 0, 2, DEFAULT_APP_STATE.shader.glow),
       voronoiSiteCount: numberRange(value.shader.voronoiSiteCount, 10, 120, DEFAULT_APP_STATE.shader.voronoiSiteCount),
       voronoiEdgeWidth: numberRange(value.shader.voronoiEdgeWidth, 0.001, 0.05, DEFAULT_APP_STATE.shader.voronoiEdgeWidth),
+      voronoiEdgeSoftness: numberRange(value.shader.voronoiEdgeSoftness, 0, 0.03, DEFAULT_APP_STATE.shader.voronoiEdgeSoftness),
       voronoiGlowRadius: numberRange(value.shader.voronoiGlowRadius, 0.005, 0.12, DEFAULT_APP_STATE.shader.voronoiGlowRadius),
       voronoiGlowIntensity: numberRange(value.shader.voronoiGlowIntensity, 0, 2, DEFAULT_APP_STATE.shader.voronoiGlowIntensity),
+      voronoiWarpStrength: numberRange(value.shader.voronoiWarpStrength, 0, 0.12, DEFAULT_APP_STATE.shader.voronoiWarpStrength),
+      voronoiWarpScale: numberRange(value.shader.voronoiWarpScale, 0.5, 16, DEFAULT_APP_STATE.shader.voronoiWarpScale),
+      voronoiThicknessVariation: numberRange(value.shader.voronoiThicknessVariation, 0, 1, DEFAULT_APP_STATE.shader.voronoiThicknessVariation),
+      voronoiJunctionBoost: numberRange(value.shader.voronoiJunctionBoost, 0, 2, DEFAULT_APP_STATE.shader.voronoiJunctionBoost),
+      voronoiContrast: numberRange(value.shader.voronoiContrast, 0.2, 3, DEFAULT_APP_STATE.shader.voronoiContrast),
     };
   }
 

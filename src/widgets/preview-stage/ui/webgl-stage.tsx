@@ -104,8 +104,14 @@ export function WebglStage({ canvasRef }: Props) {
       glow: gl.getUniformLocation(program, "u_glow"),
       voronoiSiteCount: gl.getUniformLocation(program, "u_voronoiSiteCount"),
       voronoiEdgeWidth: gl.getUniformLocation(program, "u_voronoiEdgeWidth"),
+      voronoiEdgeSoftness: gl.getUniformLocation(program, "u_voronoiEdgeSoftness"),
       voronoiGlowRadius: gl.getUniformLocation(program, "u_voronoiGlowRadius"),
       voronoiGlowIntensity: gl.getUniformLocation(program, "u_voronoiGlowIntensity"),
+      voronoiWarpStrength: gl.getUniformLocation(program, "u_voronoiWarpStrength"),
+      voronoiWarpScale: gl.getUniformLocation(program, "u_voronoiWarpScale"),
+      voronoiThicknessVariation: gl.getUniformLocation(program, "u_voronoiThicknessVariation"),
+      voronoiJunctionBoost: gl.getUniformLocation(program, "u_voronoiJunctionBoost"),
+      voronoiContrast: gl.getUniformLocation(program, "u_voronoiContrast"),
     };
 
     const startedAt = performance.now();
@@ -136,8 +142,14 @@ export function WebglStage({ canvasRef }: Props) {
       gl.uniform1f(uniformLocations.glow, shader.glow);
       gl.uniform1f(uniformLocations.voronoiSiteCount, shader.voronoiSiteCount);
       gl.uniform1f(uniformLocations.voronoiEdgeWidth, shader.voronoiEdgeWidth);
+      gl.uniform1f(uniformLocations.voronoiEdgeSoftness, shader.voronoiEdgeSoftness);
       gl.uniform1f(uniformLocations.voronoiGlowRadius, shader.voronoiGlowRadius);
       gl.uniform1f(uniformLocations.voronoiGlowIntensity, shader.voronoiGlowIntensity);
+      gl.uniform1f(uniformLocations.voronoiWarpStrength, shader.voronoiWarpStrength);
+      gl.uniform1f(uniformLocations.voronoiWarpScale, shader.voronoiWarpScale);
+      gl.uniform1f(uniformLocations.voronoiThicknessVariation, shader.voronoiThicknessVariation);
+      gl.uniform1f(uniformLocations.voronoiJunctionBoost, shader.voronoiJunctionBoost);
+      gl.uniform1f(uniformLocations.voronoiContrast, shader.voronoiContrast);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
 
       animationRef.current = requestAnimationFrame(render);

@@ -363,8 +363,15 @@ export function ControlPanel({ isOpen, onToggleOpen }: Props) {
             <>
               <RangeControl label="Site Count" max={120} min={10} onChange={(value) => setShader({ voronoiSiteCount: value })} step={1} value={shader.voronoiSiteCount} />
               <RangeControl label="Edge Width" max={0.05} min={0.001} onChange={(value) => setShader({ voronoiEdgeWidth: value })} step={0.001} value={shader.voronoiEdgeWidth} />
+              <RangeControl label="Edge Softness" max={0.03} min={0} onChange={(value) => setShader({ voronoiEdgeSoftness: value })} step={0.001} value={shader.voronoiEdgeSoftness} />
               <RangeControl label="Glow Radius" max={0.12} min={0.005} onChange={(value) => setShader({ voronoiGlowRadius: value })} step={0.005} value={shader.voronoiGlowRadius} />
               <RangeControl label="Glow Intensity" max={2.0} min={0} onChange={(value) => setShader({ voronoiGlowIntensity: value })} step={0.05} value={shader.voronoiGlowIntensity} />
+              <RangeControl label="Warp Strength" max={0.12} min={0} onChange={(value) => setShader({ voronoiWarpStrength: value })} step={0.005} value={shader.voronoiWarpStrength} />
+              <RangeControl label="Warp Scale" max={16} min={0.5} onChange={(value) => setShader({ voronoiWarpScale: value })} step={0.5} value={shader.voronoiWarpScale} />
+              <RangeControl label="Thickness Var" max={1} min={0} onChange={(value) => setShader({ voronoiThicknessVariation: value })} step={0.05} value={shader.voronoiThicknessVariation} />
+              <RangeControl label="Junction Boost" max={2} min={0} onChange={(value) => setShader({ voronoiJunctionBoost: value })} step={0.05} value={shader.voronoiJunctionBoost} />
+              <RangeControl label="Contrast" max={3} min={0.2} onChange={(value) => setShader({ voronoiContrast: value })} step={0.05} value={shader.voronoiContrast} />
+              <RangeControl label="Grain" max={0.2} min={0} onChange={(value) => setShader({ grain: value })} step={0.005} value={shader.grain} />
             </>
           ) : (
             <>
