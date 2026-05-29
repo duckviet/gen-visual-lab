@@ -450,6 +450,83 @@ shader: {
    - Phát sáng ở đáy: `col += pow(1.0 - uv.y, 8.0)`
 
 ---
+
+## Preset 10 — Ocean Shore
+
+**Visual**: Top-down shoreline như ảnh sóng biển vỗ vào bãi cát. Nước xanh ngọc ở phía trên, cát vàng ở phía dưới, hai contour sóng lượn hữu cơ và các vein bọt trắng len trong vùng nước nông.
+
+**Engine stack**:
+- Engine: Shader
+- Renderer: Full canvas
+- Phase 1
+
+**Palette**:
+```
+colors: ["#0b7f7a", "#4fc4b5", "#fff3cf", "#c99b61", "#e5bd7a"]
+background: "#0b7f7a"
+```
+
+**Shader parameters**:
+```ts
+shader: {
+  preset: "ocean-shore",
+  speed: 0.18,
+  distortion: 0.85,
+  swirl: 0.45,
+  grain: 0.08,
+  symmetry: "none"
+}
+```
+
+**Shader file**: `src/engines/shader/shaders/ocean-shore.frag.glsl`
+
+**Đặc điểm nổi bật & Cách Port**:
+1. **Shoreline Contours**: Tạo `shoreLine` và `breakerLine` bằng low-frequency sine cộng FBM 4 octave để có mép sóng lượn tự nhiên.
+2. **Foam Bands**: Dùng `smoothstep(abs(uv.y - line))` kết hợp noise threshold để bọt trắng bị vỡ nhẹ thay vì thành đường đều.
+3. **Foam Veins**: Tạo các nhánh bọt mảnh trong shallow-water zone bằng FBM có domain warp nhẹ theo thời gian.
+4. **Sand/Water Texture**: Cát dùng grain theo pixel, nước dùng fine FBM; `u_grain` phủ thêm dither cuối shader.
+5. **Uniform Mapping**: Không thêm uniform mới; `u_distortion` điều khiển waviness/breakup, `u_swirl` điều khiển drift, `u_speed` điều khiển motion.
+
+---
+
+## Preset 11 — Botanical Ornament
+
+**Visual**: Line-art nhành hoa/lá màu sage trên nền ivory, gợi phong cách ornament trong ảnh mẫu. Các cành mọc quanh khung trang trí, có lá mảnh xen kẽ và nụ hoa nhỏ, chừa khoảng trung tâm thoáng để đặt chữ/logo.
+
+**Engine stack**:
+- Engine: Growth
+- Renderer: Canvas 2D botanical line-art
+- Phase 1
+
+**Palette**:
+```
+colors: ["#f4f2e6", "#7da28d", "#b7d0c1", "#2d2c2a", "#d8c7a1"]
+background: "#f4f2e6"
+foreground: "#7da28d"
+```
+
+**Growth parameters**:
+```ts
+growth: {
+  style: "botanical",
+  layout: "ornament-frame",
+  stepSize: 8,
+  branchAngle: 22,
+  maxBranches: 1900,
+  attractorCount: 950,
+  leafDensity: 0.44,
+  flowerDensity: 0.1,
+  lineWidth: 0.9
+}
+```
+
+**Đặc điểm nổi bật & Cách Port**:
+1. **Space Colonization**: Mỗi frame duyệt attractor → endpoint gần nhất, gom hướng trung bình và mọc tối đa một đoạn mới cho mỗi endpoint.
+2. **Anti-Knot Growth**: Chỉ endpoint đang active mới mọc tiếp; node bên trong không bị chọn random lại nên không tạo cục rối ở giữa.
+3. **Ornament Frame Layout**: Tự sinh attractor quanh góc/mép khung, tránh vùng trung tâm để tạo nền trang trí giống ảnh mẫu.
+4. **Botanical Renderer**: Cành là quadratic Bezier, lá là outline Bezier hai cạnh, nụ hoa nhỏ xuất hiện ở tip theo `flowerDensity`.
+
+---
  
 ## Summary table
  
@@ -464,6 +541,8 @@ shader: {
 | 7 | Isometric Voxel | Heightmap | ISO Canvas | High | Phase 2 |
 | 8 | Tiger Wave | Shader | Full canvas | Low | Phase 1 |
 | 9 | Waterfall | Shader | Full canvas | Low | Phase 1 |
+| 10 | Ocean Shore | Shader | Full canvas | Low | Phase 1 |
+| 11 | Botanical Ornament | Growth | Botanical line-art | Medium | Phase 1 |
  
 ## Shared palette — "Studio Dark"
  

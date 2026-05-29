@@ -30,6 +30,30 @@ export const PALETTE_WATERFALL: Palette = {
   foreground: "#2d7a4f",
 };
 
+export const PALETTE_OCEAN_SHORE: Palette = {
+  colors: ["#0b7f7a", "#4fc4b5", "#fff3cf", "#c99b61", "#e5bd7a"],
+  background: "#0b7f7a",
+  foreground: "#fff3cf",
+};
+
+export const PALETTE_BOTANICAL_WASH: Palette = {
+  colors: ["#f3f0df", "#d7dfae", "#99b766", "#5f8e43", "#2d6537"],
+  background: "#f3f0df",
+  foreground: "#5f8e43",
+};
+
+export const PALETTE_TEAL_GOLD_WASH: Palette = {
+  colors: ["#063542", "#0b7180", "#66a8a0", "#c58d22", "#6d4b13"],
+  background: "#063542",
+  foreground: "#c58d22",
+};
+
+export const PALETTE_BOTANICAL_ORNAMENT: Palette = {
+  colors: ["#f4f2e6", "#7da28d", "#b7d0c1", "#2d2c2a", "#d8c7a1"],
+  background: "#f4f2e6",
+  foreground: "#7da28d",
+};
+
 export const STANDARD_PALETTES: Palette[] = [
   PALETTE_STUDIO_DARK,
   {
@@ -135,10 +159,15 @@ export const DEFAULT_APP_STATE: AppState = {
     centerAttractor: false,
   },
   growth: {
+    style: "vein",
+    layout: "target",
     stepSize: 5,
     branchAngle: 25,
     maxBranches: 2000,
     attractorCount: 800,
+    leafDensity: 0.35,
+    flowerDensity: 0.12,
+    lineWidth: 1.2,
   },
   dots: {
     spacing: 18,
@@ -411,6 +440,83 @@ export const BUILT_IN_PRESETS: BuiltInPreset[] = [
         preset: "waterfall",
         speed: 1.0,
         grain: 0.05,
+      },
+    },
+  },
+  {
+    name: "Ocean Shore",
+    state: {
+      ...DEFAULT_APP_STATE,
+      mode: "shader",
+      inputType: "none",
+      palette: PALETTE_OCEAN_SHORE,
+      shader: {
+        ...DEFAULT_APP_STATE.shader,
+        preset: "ocean-shore",
+        speed: 0.18,
+        distortion: 0.85,
+        swirl: 0.45,
+        grain: 0.08,
+        symmetry: "none",
+      },
+    },
+  },
+  {
+    name: "Botanical Wash",
+    state: {
+      ...DEFAULT_APP_STATE,
+      mode: "shader",
+      inputType: "none",
+      palette: PALETTE_BOTANICAL_WASH,
+      shader: {
+        ...DEFAULT_APP_STATE.shader,
+        preset: "botanical-wash",
+        speed: 0.55,
+        distortion: 0.7,
+        swirl: 0.25,
+        glow: 0.75,
+        grain: 0.28,
+        symmetry: "none",
+      },
+    },
+  },
+  {
+    name: "Teal Gold Wash",
+    state: {
+      ...DEFAULT_APP_STATE,
+      mode: "shader",
+      inputType: "none",
+      palette: PALETTE_TEAL_GOLD_WASH,
+      shader: {
+        ...DEFAULT_APP_STATE.shader,
+        preset: "teal-gold-wash",
+        speed: 0.45,
+        distortion: 0.95,
+        swirl: 0.35,
+        glow: 0.85,
+        grain: 0.22,
+        symmetry: "none",
+      },
+    },
+  },
+  {
+    name: "Botanical Ornament",
+    state: {
+      ...DEFAULT_APP_STATE,
+      mode: "growth",
+      inputType: "none",
+      palette: PALETTE_BOTANICAL_ORNAMENT,
+      growth: {
+        ...DEFAULT_APP_STATE.growth,
+        style: "botanical",
+        layout: "ornament-frame",
+        stepSize: 8,
+        branchAngle: 22,
+        maxBranches: 1900,
+        attractorCount: 950,
+        leafDensity: 0.44,
+        flowerDensity: 0.1,
+        lineWidth: 0.9,
       },
     },
   },

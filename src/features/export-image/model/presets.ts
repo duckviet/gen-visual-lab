@@ -154,10 +154,15 @@ function validatePreset(value: Record<string, unknown>): Partial<AppState> {
 
   if (isRecord(value.growth)) {
     preset.growth = {
+      style: value.growth.style === "botanical" || value.growth.style === "vein" ? value.growth.style : DEFAULT_APP_STATE.growth.style,
+      layout: value.growth.layout === "ornament-frame" || value.growth.layout === "target" ? value.growth.layout : DEFAULT_APP_STATE.growth.layout,
       stepSize: numberRange(value.growth.stepSize, 1, 20, DEFAULT_APP_STATE.growth.stepSize),
       branchAngle: numberRange(value.growth.branchAngle, 5, 90, DEFAULT_APP_STATE.growth.branchAngle),
       maxBranches: numberRange(value.growth.maxBranches, 100, 10000, DEFAULT_APP_STATE.growth.maxBranches),
       attractorCount: numberRange(value.growth.attractorCount, 100, 5000, DEFAULT_APP_STATE.growth.attractorCount),
+      leafDensity: numberRange(value.growth.leafDensity, 0, 1, DEFAULT_APP_STATE.growth.leafDensity),
+      flowerDensity: numberRange(value.growth.flowerDensity, 0, 1, DEFAULT_APP_STATE.growth.flowerDensity),
+      lineWidth: numberRange(value.growth.lineWidth, 0.5, 4, DEFAULT_APP_STATE.growth.lineWidth),
     };
   }
 
@@ -204,5 +209,16 @@ function isInputType(value: unknown): value is InputType {
 }
 
 function isShaderPreset(value: unknown): value is ShaderPreset {
-  return value === "liquid" || value === "grain" || value === "terrain" || value === "fluid-advection" || value === "tiger-wave" || value === "voronoi" || value === "waterfall";
+  return (
+    value === "liquid" ||
+    value === "grain" ||
+    value === "terrain" ||
+    value === "fluid-advection" ||
+    value === "tiger-wave" ||
+    value === "voronoi" ||
+    value === "waterfall" ||
+    value === "ocean-shore" ||
+    value === "botanical-wash" ||
+    value === "teal-gold-wash"
+  );
 }

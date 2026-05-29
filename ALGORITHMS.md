@@ -87,19 +87,23 @@ Curl noise guarantees a divergence-free vector field, which keeps particles flow
 // Curl of noise: curl(x, y) = (∂n/∂y, -∂n/∂x)
 ```
 
-## 5. Growth / Vein
+## 5. Growth / Vein / Botanical
 
 ```
-1. place seed nodes at targetPoints
-2. each frame: pick a random growth tip
-3. find closest unoccupied attractor point within radius
-4. extend tip toward it by stepSize
-5. if tip reaches attractor: mark attractor consumed, branch
-6. draw segment: line(tip.prev, tip.pos)
-7. stop when all attractors consumed or maxAge reached
+1. generate attractors from targetPoints, fallback vines, or ornament-frame bands
+2. place multiple seed roots around target bounds or frame corners
+3. each frame: inspect active endpoints only
+4. for each attractor, find the closest endpoint inside attractionRadius
+5. remove attractors inside killRadius
+6. accumulate averaged directions per endpoint
+7. grow at most one main child per influenced endpoint, capped per frame
+8. render full canvas from cached nodes each frame
+9. botanical style adds Bezier stems, leaf outlines, and small buds
 ```
 
-Parameters: `stepSize`, `branchAngle`, `maxBranches`, `attractorCount`
+This avoids the old center-knot failure mode: interior nodes do not keep sprouting forever, attractors outside the active radius are preserved, and growth progresses from endpoints toward distributed target clusters.
+
+Parameters: `style`, `layout`, `stepSize`, `branchAngle`, `maxBranches`, `attractorCount`, `leafDensity`, `flowerDensity`, `lineWidth`
 
 ## 6. Shader (GLSL fragment)
 

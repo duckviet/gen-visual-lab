@@ -2,7 +2,7 @@ export type Mode = "custom" | "shader" | "dots" | "flow" | "growth" | "mosaic" |
 
 export type InputType = "text" | "svg" | "none";
 
-export type ShaderPreset = "liquid" | "grain" | "terrain" | "fluid-advection" | "tiger-wave" | "voronoi" | "waterfall";
+export type ShaderPreset = "liquid" | "grain" | "terrain" | "fluid-advection" | "tiger-wave" | "voronoi" | "waterfall" | "ocean-shore" | "botanical-wash" | "teal-gold-wash";
 
 export type SymmetryMode = "none" | "mirror" | "quad" | "radial";
 
@@ -95,10 +95,15 @@ export type FlowSettings = {
 };
 
 export type GrowthSettings = {
+  style: "vein" | "botanical";
+  layout: "target" | "ornament-frame";
   stepSize: number;
   branchAngle: number;
   maxBranches: number;
   attractorCount: number;
+  leafDensity: number;
+  flowerDensity: number;
+  lineWidth: number;
 };
 
 export type DotsSettings = {

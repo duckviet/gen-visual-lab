@@ -8,6 +8,9 @@ import fluidAdvectionShader from "@/engines/shader/shaders/fluid-advection.frag.
 import tigerWaveShader from "@/engines/shader/shaders/tiger-wave.frag.glsl?raw";
 import voronoiShader from "@/engines/shader/shaders/voronoi.frag.glsl?raw";
 import waterfallShader from "@/engines/shader/shaders/waterfall.frag.glsl?raw";
+import oceanShoreShader from "@/engines/shader/shaders/ocean-shore.frag.glsl?raw";
+import botanicalWashShader from "@/engines/shader/shaders/botanical-wash.frag.glsl?raw";
+import tealGoldWashShader from "@/engines/shader/shaders/teal-gold-wash.frag.glsl?raw";
 import type { ShaderPreset } from "@/shared/types/app";
 
 type Props = {
@@ -29,6 +32,9 @@ const SHADERS: Record<ShaderPreset, string> = {
   "tiger-wave": tigerWaveShader,
   voronoi: voronoiShader,
   waterfall: waterfallShader,
+  "ocean-shore": oceanShoreShader,
+  "botanical-wash": botanicalWashShader,
+  "teal-gold-wash": tealGoldWashShader,
 };
 
 export function WebglStage({ canvasRef }: Props) {
